@@ -1,6 +1,11 @@
 class ReviewsController < ApplicationController
 
 
+  def index
+    @reviews = Review.all
+  end
+
+
   def show
     @review = Review.find(params[:id])
   end
@@ -9,17 +14,9 @@ class ReviewsController < ApplicationController
   def new
   end
 
-  def create
-    render plain: params[:review].inspect
-  end
-
-
-# def create
-#   @review = Review.new(params[:review])
-#
-#   @review.save
-#   redirect_to @review
-# end
+  # def create
+  #   render plain: params[:review].inspect
+  # end
 
 def create
   @review = Review.new(review_params)
