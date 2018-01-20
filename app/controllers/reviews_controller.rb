@@ -12,6 +12,7 @@ class ReviewsController < ApplicationController
 
 
   def new
+    @review = Review.new
   end
 
   # def create
@@ -21,8 +22,11 @@ class ReviewsController < ApplicationController
 def create
   @review = Review.new(review_params)
 
-  @review.save
-  redirect_to @review
+  if @review.save
+    redirect_to @review
+  else
+    render 'new'
+  end
 end
 
 private
