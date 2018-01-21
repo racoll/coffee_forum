@@ -19,20 +19,24 @@ class ReviewsController < ApplicationController
   #   render plain: params[:review].inspect
   # end
 
-def create
-  @review = Review.new(review_params)
-
-  if @review.save
-    redirect_to @review
-  else
-    render 'new'
+  def edit
+    @review = Review.find(params[:id])
   end
-end
 
-private
-  def review_params
-    params.require(:review).permit(:name, :notes)
+  def create
+    @review = Review.new(review_params)
+
+    if @review.save
+      redirect_to @review
+    else
+      render 'new'
+    end
   end
+
+  private
+    def review_params
+      params.require(:review).permit(:name, :notes)
+    end
 
 
 end
